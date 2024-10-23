@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Record a New Game</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.player1.label }}<br>
+        {{ form.player1() }}
+    </p>
+    <p>
+        {{ form.player2.label }}<br>
+        {{ form.player2() }}
+    </p>
+    {% if form.winner.choices %}
+    <p>
+        {{ form.winner.label }}<br>
+        {% for subfield in form.winner %}
+            <label>{{ subfield() }} {{ subfield.label.text }}</label><br>
+        {% endfor %}
+    </p>
+    {% endif %}
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

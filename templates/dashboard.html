@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Top 10 Players</h2>
+<table class="striped">
+    <thead> 
+        <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">
+                <a href="{{ url_for('dashboard', sort_by='username', sort_order='asc' if sort_by != 'username' or sort_order == 'desc' else 'desc') }}">
+                    Player {% if sort_by == 'username' %}{% if sort_order == 'asc' %}▲{% else %}▼{% endif %}{% endif %}
+                </a>
+            </th>
+            <th scope="col">
+                <a href="{{ url_for('dashboard', sort_by='wins', sort_order='asc' if sort_by != 'wins' or sort_order == 'desc' else 'desc') }}">
+                    Wins {% if sort_by == 'wins' %}{% if sort_order == 'asc' %}▲{% else %}▼{% endif %}{% endif %}
+                </a>
+            </th>
+            <th scope="col">
+                <a href="{{ url_for('dashboard', sort_by='losses', sort_order='asc' if sort_by != 'losses' or sort_order == 'desc' else 'desc') }}">
+                    Losses {% if sort_by == 'losses' %}{% if sort_order == 'asc' %}▲{% else %}▼{% endif %}{% endif %}
+                </a>
+            </th>
+            <th scope="col">
+                <a href="{{ url_for('dashboard', sort_by='win_percentage', sort_order='asc' if sort_by != 'win_percentage' or sort_order == 'desc' else 'desc') }}">
+                    Win Percentage {% if sort_by == 'win_percentage' %}{% if sort_order == 'asc' %}▲{% else %}▼{% endif %}{% endif %}
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for player in top_players %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ player['username'] }}</td>
+            <td>{{ player['wins'] }}</td>
+            <td>{{ player['losses'] }}</td>
+            <td>{{ player['win_percentage'] }}%</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>All Games</h2>
+{% if games %}
+    <table class="striped">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Player A</th>
+                <th scope="col">Player B</th>
+                <th scope="col">Winner</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <th scope="row">{{ game['date_played'] }}</th>
+                <td>{{ game['player1_name'] }}</td>
+                <td>{{ game['player2_name'] }}</td>
+                <td>{{ game['winner_name'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No games have been recorded yet.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pool Score Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="container">
+    <a href="/"><center><img src="https://technology1.com/__data/assets/file/0008/264950/T1_Logo_-No-Tagline-W.svg" width="200px" alt="TechnologyOne" class="mt-2"></center></a>
+  </header>
+  <header class="container">
+    <nav>
+      <a href="{{ url_for('register') }}">Register New Player</a>
+      <a href="{{ url_for('new_game') }}">New Game</a>
+      <a href="{{ url_for('dashboard') }}">Stats</a>
+      <a href="{{ url_for('rules') }}">Rules</a>
+    </nav>
+  </header>
+  <main class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flashes">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
