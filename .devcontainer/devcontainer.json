@@ -3,7 +3,8 @@
 {
 	"name": "Existing Dockerfile", 
     "mounts": [
-    	"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+		"source=${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
 	],
 	"build": {
 		// Sets the run context to one level up instead of the .devcontainer folder.

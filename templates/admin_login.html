@@ -1,0 +1,12 @@
+<!-- templates/admin_login.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Login</h2>
+<form method="POST">
+    <p>
+        Password:<br>
+        <input type="password" name="password">
+    </p>
+    <p><input type="submit" value="Login"></p>
+</form>
+{% endblock %}

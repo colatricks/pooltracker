@@ -7,7 +7,7 @@ class NewGameForm(FlaskForm):
     player1 = SelectField('Player A', validators=[InputRequired()], coerce=int)
     player2 = SelectField('Player B', validators=[InputRequired()], coerce=int)
     winner = RadioField('Winner', validators=[InputRequired()], coerce=int)
-    submit = SubmitField("Record Game")
+    submit = SubmitField("Record Game!")
 
     def validate(self, *args, **kwargs):
         if not super(NewGameForm, self).validate(*args, **kwargs):

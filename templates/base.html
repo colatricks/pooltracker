@@ -15,6 +15,9 @@
       <a href="{{ url_for('new_game') }}">New Game</a>
       <a href="{{ url_for('dashboard') }}">Stats</a>
       <a href="{{ url_for('rules') }}">Rules</a>
+      {% if is_admin() %}
+          <p><a href="{{ url_for('admin') }}">Admin Page</a></p>
+      {% endif %}
     </nav>
   </header>
   <main class="container">
